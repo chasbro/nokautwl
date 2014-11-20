@@ -39,6 +39,10 @@ NokautWL uses some extra components:
 - Source: http://getbootstrap.com/
 - License: MIT License
 - License URI: https://github.com/twbs/bootstrap/blob/master/LICENSE
+3. Nokaut.pl Search API KIT
+- Source: https://github.com/nokaut/api-kit
+- License: MIT License
+- License URI: https://github.com/nokaut/api-kit/blob/master/LICENSE
 */
 
 error_reporting(E_ALL);
