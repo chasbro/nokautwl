@@ -1,0 +1,22 @@
+<div id="nokaut-wl-products-page" class="nokaut-wl-container">
+    <div class="row" id="nokaut-wl-products-main">
+        <div class="col-md-12">
+            <div class="nokaut-wl-short-code-products-boxes">
+                {% for product in products|slice(0,limit) %}
+                    <div class="col-md-{{ 12/columns }}">
+                        {% include 'product/partial/box.twig' with {'product': product} %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="pull-right nokaut-wl-products-boxes-see-more">
+                <a href="{{ productsUrl|raw }}">
+                    Zobacz więcej
+                    {#<span class="badge"><span class="glyphicon glyphicon-arrow-right"></span></span>#}
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

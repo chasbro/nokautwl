@@ -1,0 +1,78 @@
+<div id="nokaut-wl-products-page" class="nokaut-wl-container">
+
+    {#wyszukiwarka i numer strony#}
+    <div class="row">
+        <div class="col-md-9">
+            {% include 'products/partials/search-form.twig' with {'search': search, 'wordpressCategoryMode': wordpressCategoryMode} %}
+        </div>
+        <div class="col-md-3 text-right">
+            <button type="button" class="btn btn-default btn-sm active disabled">
+                Strona {{ pagination.getCurrentPage }}
+                z {{ pagination.getLastPageNum }}</button>
+        </div>
+    </div>
+
+    {#sortowanie i widok#}
+    <div class="row" id="nokaut-wl-products-sort-view-row">
+        <div class="col-md-9">
+            <div class="btn-group">
+                {% for sort in products.getMetadata.getSorts %}
+                    {% if sort.getId in [null, 'najpopularniejsze','najtansze','najdrozsze'] or sort.getIsFilter %}
+                        <a role="button" class="btn btn-default btn-sm{% if sort.getIsFilter %} active{% endif %}"
+                           href="{{ sort.getUrl|productsUrl }}">
+                            {% if not sort.getId %}
+                                {% if products.getPhrase.getValue %}
+                                    Najtrafniejsze
+                                {% else %}
+                                    Wybrane
+                                {% endif %}
+                            {% else %}
+                                {{ sort.getName }}
+                            {% endif %}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-3 text-right">
+            <div class="btn-group">
+                <a role="button" class="btn btn-default btn-sm{% if view.isListView %} active{% endif %}"
+                   href="{{ view.getListViewUrl }}">Lista</a>
+                <a role="button" class="btn btn-default btn-sm{% if view.isBoxView %} active{% endif %}"
+                   href="{{ view.getBoxViewUrl }}">Zdjęcia</a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    {#produkty, stronnicowanie i filtry#}
+    <div class="row" id="nokaut-wl-products-main">
+        <div class="col-md-8">
+            {% if view.isBoxView %}
+                <div id="nokaut-wl-products-boxes">
+                    {% for product in products %}
+                        <div class="col-md-6">
+                            {% include 'product/partial/box.twig' with {'product': product} %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <ul class="list-group" id="nokaut-wl-products-list">
+                    {% for product in products %}
+                        {% include 'product/partial/list.twig' with {'product': product} %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <div class="clearfix"></div>
+            <div id="nokaut-wl-products-pagination">
+                {% include 'products/partials/pagination.twig' with {'products': products} %}
+            </div>
+        </div>
+
+        <div class="col-md-4" id="nokaut-wl-products-filters">
+            {% include 'products/partials/filters.twig' with {'products': products} %}
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>

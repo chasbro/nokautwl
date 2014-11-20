@@ -1,0 +1,24 @@
+<div class="input-group">
+    <form action="#" method="post" id="nokaut-wl-search-form" class="form-inline"
+          data-search-category-url-template='{{ search.getWpCategorySearchUrlTemplate }}'
+          data-search-global-url-template='{{ search.getWpGlobalSearchUrlTemplate }}'>
+        <input class="form-control" type="text" id="nokaut-wl-search-input"
+               value="{{ products.getPhrase.getValue }}">
+
+        <div class="input-group-btn">
+            {% if wordpressCategoryMode %}
+                <div class="btn btn-default btn-sm active" tabindex="-1"
+                     id="nokaut-wl-search-current-category-box">
+                    <label>
+                        <input type="checkbox"
+                               id="nokaut-wl-search-current-category" checked="checked"
+                               value="1" class="form-control"> w bieżącej kategorii
+                    </label>
+                </div>
+            {% endif %}
+            <button type="button" class="btn btn-default btn-sm" tabindex="-1" id="nokaut-wl-search-button">
+                Szukaj
+            </button>
+        </div>
+    </form>
+</div>

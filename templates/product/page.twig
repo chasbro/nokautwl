@@ -1,0 +1,155 @@
+<div class="nokaut-wl-container">
+
+    <ol class="nokaut-wl-product-breadcrumb breadcrumb">
+        {% for breadcrumbLink in breadcrumbLinks %}
+            <li>{{ breadcrumbLink|raw }}</li>
+        {% endfor %}
+        <li class="active">{{ product.getTitle }}</li>
+    </ol>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    {#<img src="{{ product.getPhotoId|photoUrl('500x500',product.getTitle) }}" class="img-rounded" alt="{{ product.getTitle }}">#}
+
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="{{ product.getPhotoId|photoUrl('500x500',product.getTitle) }}"
+                                     class="img-rounded nokaut-wl-product-img" alt="{{ product.getTitle }}">
+
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            {% for photoId in product.getPhotoIds %}
+                                {% if photoId != product.getPhotoId %}
+                                    <div class="item">
+                                        <img src="{{ photoId|photoUrl('500x500',product.getTitle) }}"
+                                             class="img-rounded nokaut-wl-product-img" alt="{{ product.getTitle }}">
+
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+
+                <div class="media-body">
+                    <div class="col-md-12">
+                        <h3 class="media-heading">{{ product.getTitle }}</h3>
+                        <ul class="list-inline" style="line-height: 20px;">
+                            {% if product.getProperties %}
+                                {% for property in  product.getProperties|slice(0,4) %}
+                                    <li>{{ property.getName }}:
+                                        <strong>{{ property.getValue }} {{ property.getUnit }}</strong>
+                                    </li>
+                                {% endfor %}
+                                <li><a href="#nokaut-wl-product-properties">Zobacz szczegóły <span class="caret"></span></a>
+                                </li>
+                            {% endif %}
+                            {% if product.getDescriptionHtml %}
+                                <li><a href="#nokaut-wl-product-description-panel">Zobacz opis<span
+                                                class="caret"></span></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel-body" style="height: 64px;">
+            <div class="pull-left" style="line-height: 34px;">{{ product.getOfferCount }} ofert
+                od <strong class="text-danger">{{ offers.getMetadata.getPriceMin|price }}&nbsp;zł</strong>
+                do <strong class="text-danger">{{ offers.getMetadata.getPriceMax|price }}&nbsp;zł</strong>
+            </div>
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default active" id="nokaut-wl-offer-sort-default">Ułożenie
+                    domyślne
+                </button>
+                <button type="button" class="btn btn-default" id="nokaut-wl-offer-sort-price-asc">Od najtańszej</button>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <ul class="list-group">
+            {% for offer in offers %}
+                <li class="list-group-item">
+                    <div class="media">
+
+                        <a class="pull-left" {{ offer.getClickUrl|offerAnchorAttributes|raw }}>
+                            <img src="{{ offer.getPhotoId|photoUrl('130x130',offer.getTitle) }}"
+                                 class="img-rounded nokaut-wl-offer-img"
+                                 alt="{{ offer.getTitle }}">
+                            <img src="{{ offer.getShop.getUrlLogo|shopLogoUrl }}"
+                                 class="media-object nokaut-wl-offer-shop-logo" data-src="holder.js/64x64"
+                                 alt="{{ offer.getShop.getName }}">
+                        </a>
+
+                        <div class="media-body">
+                            <div class="col-md-7">
+                                <a {{ offer.getClickUrl|offerAnchorAttributes|raw }} class="navbar-link"><h4
+                                            class="media-heading">{{ offer.getTitle }}</h4></a>
+                            </div>
+                            <div class="col-md-5 text-right">
+                                <div class="nokaut-wl-offer-price pull-left">
+                                    <a {{ offer.getClickUrl|offerAnchorAttributes|raw }}>
+                                        <strong class="text-danger"><span data-sort-value="{{ offer.getPrice }}"
+                                                    class="nokaut-wl-price">{{ offer.getPrice|price }}</span>
+                                            zł</strong>
+                                    </a>
+                                </div>
+
+                                <div style="margin-top: 3px;">
+                                    {% include 'product/partial/button/offer.twig' with {'offerUrl': offer.getClickUrl} %}
+                                </div>
+                                <div>
+                                    <a {{ offer.getClickUrl|offerAnchorAttributes|raw }}
+                                            class="navbar-link nokaut-wl-offer-shop-link">{{ offer.getShop.getName }}</a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-12" style="margin-top: 3px;">
+                                {{ offer.getDescription|raw|slice(0,250) }}{% if offer.getDescription|length>250 %}...{% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <div class="panel panel-default" id="nokaut-wl-product-properties">
+        <div class="panel-heading">Szczegóły</div>
+
+        <table class="table">
+            {% for property in product.getProperties %}
+                <tr>
+                    <td>{{ property.getName }}</td>
+                    <td>
+                        {% if property.getValue is iterable %}
+                            <ul>
+                            {% for value in property.getValue if value %}
+                                <li>{{ value }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            {{ property.getValue }} {{ property.getUnit }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="panel panel-default" id="nokaut-wl-product-description-panel">
+        <div class="panel-heading">Opis</div>
+        <div class="panel-body">
+            <p>{{ product.getDescriptionHtml|raw }}</p>
+        </div>
+    </div>
+</div>

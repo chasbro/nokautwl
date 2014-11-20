@@ -1,0 +1,14 @@
+<div class="thumbnail">
+    <img data-src="holder.js/150x150" style="width: 150px; height: 150px;" alt="..."
+         src="{{ product.getPhotoId|photoUrl('130x130') }}" class="img-rounded">
+
+    <p style="margin-bottom: 4px;">{{ product.getTitle|slice(0,90) }}</p>
+    {% if product.getClickUrl %}
+        <p style="margin-bottom: 4px;">w 1 sklepie za <strong class="text-danger">{{ product.getPrices.getMin|price }}
+                &nbsp;zł</strong></p>
+    {% else %}
+        <p style="margin-bottom: 4px;">w  {{ product.getShopCount }} sklepach od
+            <strong class="text-danger">{{ product.getPrices.getMin|price }}&nbsp;zł</strong>
+        </p>
+    {% endif %}
+</div>

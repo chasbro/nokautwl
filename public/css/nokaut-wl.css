@@ -1,0 +1,206 @@
+.nokaut-wl-container {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+/* Strona produktów (kategoria, wyniki wyszukiwania) */
+
+#nokaut-wl-products-boxes > div {
+    padding-left: 0px;
+    height: 380px;
+    overflow: hidden;
+}
+
+.nokaut-wl-short-code-products-boxes > div {
+    padding-left: 0px;
+    height: 380px;
+    overflow: hidden;
+}
+
+.nokaut-wl-products-boxes-see-more {
+    margin-top: -25px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.nokaut-wl-product-box-title {
+    height: 100px;
+    overflow: hidden;
+}
+
+.nokaut-wl-product-box-shops {
+    height: 50px;
+    overflow: hidden;
+}
+
+/* Search */
+#nokaut-wl-search-input {
+    height: 30px;
+    width: 150px;
+}
+
+#nokaut-wl-search-current-category {
+    height: 20px;
+    margin-top: 0px;
+    width: 20px;
+}
+
+#nokaut-wl-products-main {
+    margin-top: 10px;
+}
+
+#nokaut-wl-search-current-category-box {
+    height: 30px;
+}
+
+#nokaut-wl-products-pagination {
+
+}
+
+#nokaut-wl-products-filters {
+    padding-left: 0px;
+}
+
+#nokaut-wl-products-filters a.btn-sm {
+    padding: 1px 5px;
+    margin-top: 2px;
+}
+
+#nokaut-wl-products-filters ul {
+    margin: 0px;
+}
+
+#nokaut-wl-products-sort-view-row > div {
+    margin-top: 10px;
+}
+
+#nokaut-wl-products-list {
+    margin-left: 0px;
+}
+
+.nokaut-wl-products-list-item-img img {
+    width: 150px;
+    height: 150px;
+}
+
+.nokaut-wl-products-list-item-body {
+    margin-bottom: 10px;
+}
+
+/* Strona produktu */
+.nokaut-wl-product-breadcrumb {
+    margin-left: 0px;
+}
+
+.nokaut-wl-product-img {
+    width: 230px;
+    height: 230px;
+}
+
+.nokaut-wl-offer-img {
+    width: 100px;
+    height: 100px;
+}
+
+.nokaut-wl-offer-shop-logo {
+    width: 88px;
+    height: 31px;
+}
+
+.nokaut-wl-offer-shop-link {
+    font-size: 10px;
+}
+
+/* Common */
+.nokaut-wl-offer-price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Short Tags */
+/* Product Tooltip */
+.nokautwl-tooltip .tooltip {
+    position: absolute;
+    z-index: 1020;
+    display: block;
+    visibility: visible;
+    padding: 5px;
+    font-size: 11px;
+    opacity: 0;
+    filter: alpha(opacity=0)
+}
+
+.nokautwl-tooltip .tooltip.in {
+    opacity: .8;
+    filter: alpha(opacity=80)
+}
+
+.nokautwl-tooltip .tooltip.top {
+    margin-top: -2px
+}
+
+.nokautwl-tooltip .tooltip.right {
+    margin-left: 2px
+}
+
+.nokautwl-tooltip .tooltip.bottom {
+    margin-top: 2px
+}
+
+.nokautwl-tooltip .tooltip.left {
+    margin-left: -2px
+}
+
+.nokautwl-tooltip .tooltip.top .tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000
+}
+
+.nokautwl-tooltip .tooltip.left .tooltip-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #000
+}
+
+.nokautwl-tooltip .tooltip.bottom .tooltip-arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #000
+}
+
+.nokautwl-tooltip .tooltip.right .tooltip-arrow {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #000
+}
+
+.nokautwl-tooltip .tooltip-inner {
+    max-width: 200px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px
+}
+
+.nokautwl-tooltip .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0
+}

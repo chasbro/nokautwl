@@ -1,0 +1,15 @@
+<div id="nokaut-wl-products-page" class="nokaut-wl-container">
+
+    {#wyszukiwarka i numer strony#}
+    <div class="row">
+        <div class="col-md-9">
+            {% include 'products/partials/search-form.twig' with {'search': search, 'wordpressCategoryMode': wordpressCategoryMode} %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Nie znaleziono produktów pasujących do Twojego zapytania.</h3>
+        </div>
+    </div>
+</div>

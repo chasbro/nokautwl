@@ -1,0 +1,28 @@
+{% if pagination.getLastPageNum > 1 %}
+    <ul class="pagination">
+        <li {% if pagination.isFirstPage %}class="disabled"{% endif %}><a
+                    href="{{ pagination.getUrl(pagination.getPreviousPage)|productsUrl }}">&laquo;</a>
+        </li>
+        {% if 1 not in pagination.getDeltaPagesNum %}
+            <li><a href="{{ pagination.getUrl(1)|productsUrl }}">1</a></li>
+        {% endif %}
+        {% if min(pagination.getDeltaPagesNum) > 2 %}
+            <li><a href="#">...</a></li>
+        {% endif %}
+        {% for page in pagination.getDeltaPagesNum %}
+            <li {% if page == pagination.getCurrentPage %}class="disabled"{% endif %}><a
+                        href="{{ pagination.getUrl(page)|productsUrl }}">{{ page }}</a></li>
+        {% endfor %}
+        {% if max(pagination.getDeltaPagesNum) < pagination.getLastPageNum - 1 %}
+            <li><a href="#">...</a></li>
+        {% endif %}
+        {% if pagination.getLastPageNum not in pagination.getDeltaPagesNum %}
+            <li>
+                <a href="{{ pagination.getUrl(pagination.getLastPageNum)|productsUrl }}">{{ pagination.getLastPageNum }}</a>
+            </li>
+        {% endif %}
+        <li {% if pagination.isLastPage %}class="disabled"{% endif %}><a
+                    href="{{ pagination.getUrl(pagination.getNextPage)|productsUrl }}">&raquo;</a>
+        </li>
+    </ul>
+{% endif %}

@@ -1,0 +1,283 @@
+{#Selected filters#}
+{% if products.getPhrase.getValue
+or (filtersSelectedCategories|length and filtersSelectedCategories|showProductsCategoryFilter)
+or filtersSelectedProducers|length
+or filtersSelectedShops|length
+or filtersSelectedPriceRanges|length
+or filtersSelectedProperties|length %}
+    <div class="panel-group" id="accordionSelectedFilters">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#nokaut-wl-filter-typesSelectedFilters"
+                       href="#collapseSelectedFilters">
+                        Wybrane filtry
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseSelectedFilters" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+
+                        {% if products.getPhrase.getValue %}
+                            <li class=" active">
+                                <span class="badge">Fraza:</span>
+                                <a type="button" class="btn btn-primary btn-sm"
+                                   href="{{ products.getPhrase.getUrlOut|productsUrl }}">
+                                    {{ products.getPhrase.getValue }}<span
+                                            class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if filtersSelectedCategories|length and filtersSelectedCategories|showProductsCategoryFilter %}
+                            <li class=" active">
+                                <span class="badge">Kategoria:</span>
+                                {% for category in filtersSelectedCategories %}
+                                    <a type="button" class="btn btn-primary btn-sm"
+                                       href="{{ category.getUrlOut|productsUrl }}">
+                                        {{ category.getName|slice(0,24) }}
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                {% endfor %}
+                            </li>
+                        {% endif %}
+
+                        {% if filtersSelectedShops|length %}
+                            <li class=" active">
+                                <span class="badge">Sklep:</span>
+                                {% for shop in filtersSelectedShops %}
+                                    <a type="button" class="btn btn-primary btn-sm"
+                                       href="{{ shop.getUrl|productsUrl }}">
+                                        {{ shop.getName }}
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                {% endfor %}
+                            </li>
+                        {% endif %}
+
+                        {% if filtersSelectedProducers|length %}
+                            <li class=" active">
+                                <span class="badge">Producent:</span>
+                                {% for producer in filtersSelectedProducers %}
+                                    <a type="button" class="btn btn-primary btn-sm"
+                                       href="{{ producer.getUrl|productsUrl }}">
+                                        {{ producer.getName|slice(0,24) }}
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                {% endfor %}
+                            </li>
+                        {% endif %}
+
+                        {% if filtersSelectedPriceRanges|length %}
+                            <li class=" active">
+                                <span class="badge">Cena:</span>
+                                {% for range in filtersSelectedPriceRanges %}
+                                    <a type="button" class="btn btn-primary btn-sm"
+                                       href="{{ range.getUrl|productsUrl }}">
+                                        {{ range.getMin|price }} - {{ range.getMax|price }} zł
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                {% endfor %}
+                            </li>
+                        {% endif %}
+
+                        {% if filtersSelectedProperties|length %}
+                            <li class=" active">
+                                {% for property in filtersSelectedProperties %}
+                                    <span class="badge">{{ property.getName|slice(0,24) }}:</span>
+                                    {% for value in property %}
+                                        <a type="button" class="btn btn-primary btn-sm"
+                                           href="{{ value.getUrl|productsUrl }}">
+                                            {{ value.getName|slice(0,24) }} {{ property.getUnit }}
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    {% endfor %}
+                                {% endfor %}
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{#Filters#}
+<div class="panel-group" id="nokaut-wl-filter-types">
+    {% if filtersCategories|length and filtersCategories|showProductsCategoryFacet %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#nokaut-wl-filter-types" href="#collapse-categories">
+                        Kategoria
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-categories"
+                 class="panel-collapse collapse {% if filtersCategories.getIsActive %}in{% endif %}">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for category in filtersCategories %}
+                            {% if category.getTotal > 0 %}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ category.getTotal }}</span>
+                                    {% if category.getIsFilter and filtersCategories|length == 1 %}
+                                        <a href="{{ category.getUrlOut|productsUrl }}"><span
+                                                    class="badge"><span
+                                                        class="glyphicon glyphicon-remove"></span></span></a>
+                                        {{ category.getName }}
+                                    {% else %}
+                                        <a href="{{ category.getUrlIn|productsUrl }}">{{ category.getName }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if filtersShops|length %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#nokaut-wl-filter-types" href="#collapse-shops">
+                        Sklep
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-shops"
+                 class="panel-collapse collapse {% if filtersShops.getIsActive %}in{% endif %}">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for shop in filtersShops %}
+                            {% if shop.getTotal > 0 %}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ shop.getTotal }}</span>
+                                    {% if shop.getIsFilter %}
+                                        <a href="{{ shop.getUrl|productsUrl }}"><span
+                                                    class="badge"><span
+                                                        class="glyphicon glyphicon-remove"></span></span></a>
+                                        {{ shop.getName }}
+                                    {% else %}
+                                        <a href="{{ shop.getUrl|productsUrl }}">{{ shop.getName }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if filtersProducers|length %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#nokaut-wl-filter-types" href="#collapse-producers">
+                        Producent
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-producers"
+                 class="panel-collapse collapse {% if filtersProducers.getIsActive %}in{% endif %}">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for producer in filtersProducers %}
+                            {% if producer.getTotal > 0 %}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ producer.getTotal }}</span>
+                                    {% if producer.getIsFilter %}
+                                        <a href="{{ producer.getUrl|productsUrl }}"><span
+                                                    class="badge"><span
+                                                        class="glyphicon glyphicon-remove"></span></span></a>
+                                        {{ producer.getName }}
+                                    {% else %}
+                                        <a href="{{ producer.getUrl|productsUrl }}">{{ producer.getName }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if filtersPriceRanges|length %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#nokaut-wl-filter-types"
+                       href="#collapse-range-price-ranges">
+                        Cena
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse-range-price-ranges"
+                 class="panel-collapse collapse {% if filtersPriceRanges.getIsActive %}in{% endif %}">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for range in filtersPriceRanges %}
+                            {% if range.getTotal > 0 %}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ range.getTotal }}</span>
+                                    {% if range.getIsFilter %}
+                                        <a href="{{ range.getUrl|productsUrl }}"><span
+                                                    class="badge"><span
+                                                        class="glyphicon glyphicon-remove"></span></span></a>
+                                        {{ range.getMin|price }} - {{ range.getMax|price }} zł
+                                    {% else %}
+                                        <a href="{{ range.getUrl|productsUrl }}">{{ range.getMin|price }}
+                                            - {{ range.getMax|price }} zł</a>
+                                    {% endif %}
+
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% for property in filtersProperties %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#nokaut-wl-filter-types"
+                       href="#collapseProperty{{ property.getId }}">
+                        {{ property.getName }}
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseProperty{{ property.getId }}"
+                 class="panel-collapse collapse {% if property.getIsActive %}in{% endif %}">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {% for value in property %}
+                            {% if value.getTotal > 0 %}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ value.getTotal }}</span>
+                                    {% if value.getIsFilter %}
+                                        <a href="{{ value.getUrl|productsUrl }}"><span
+                                                    class="badge"><span
+                                                        class="glyphicon glyphicon-remove"></span></span></a>
+                                        {{ value.getName }} {{ property.getUnit }}
+                                    {% else %}
+                                        <a href="{{ value.getUrl|productsUrl }}">{{ value.getName }} {{ property.getUnit }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

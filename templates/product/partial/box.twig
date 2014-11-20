@@ -1,0 +1,26 @@
+<div class="thumbnail" style="padding-left: 5px;">
+    <a {{ product|productDefaultAnchorAttributes|raw }}>
+        <img data-src="holder.js/150x150" style="width: 150px; height: 150px;" alt="..."
+             src="{{ product.getPhotoId|photoUrl('130x130') }}" class="img-rounded">
+    </a>
+
+    <div class="caption">
+        <div class="nokaut-wl-product-box-title">
+            <h4><a {{ product|productDefaultAnchorAttributes|raw }}>{{ product.getTitle|shortTitle(70) }}</a></h4>
+        </div>
+        {% if product.getClickUrl %}
+            <div class="nokaut-wl-product-box-shops">
+                <p>w 1 sklepie za <strong class="text-danger">{{ product.getPrices.getMin|price }}&nbsp;zł</strong></p>
+            </div>
+            {% include 'product/partial/button/offer.twig' with {'offerUrl': product.getClickUrl} %}
+        {% else %}
+            <div class="nokaut-wl-product-box-shops">
+                <p>w  {{ product.getShopCount }} sklepach od
+                    <strong class="text-danger">{{ product.getPrices.getMin|price }}&nbsp;zł</strong>
+                </p>
+            </div>
+            {% include 'product/partial/button/product.twig' with {'productUrl': product.getUrl} %}
+        {% endif %}
+
+    </div>
+</div>

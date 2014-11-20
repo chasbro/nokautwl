@@ -1,0 +1,26 @@
+<span class="nokautwl-tooltip">
+    <a {{ product|productDefaultAnchorAttributes|raw }} id="nokautwl-product-text-link-{{ product.getId }}"
+            {% if tooltip == 'off' %}
+                {#brak tooltip, standardowy title#}
+                title="{{ product.getTitle }}"
+            {% elseif tooltip == 'simple' %}
+                {#zwykly tooltip#}
+                data-toggle="tooltip"
+                title="{{ product.getTitle }}"
+            {% elseif tooltip == 'advanced' %}
+                {#rozbudowany tooltip z html#}
+                data-toggle="tooltip"
+                title='{% include 'product/short-code/text-link/advanced.twig' with {'product': product} %}'
+            {% else %}
+                {#rozbudowany tooltip html z podanego pliku szablonu#}
+                data-toggle="tooltip"
+                title='{% include tooltip with {'product': product} %}'
+            {% endif %}
+            >
+        {% if content %}
+            {{ content }}
+        {% else %}
+            {{ product.getTitle }}
+        {% endif %}
+    </a>
+</span>
