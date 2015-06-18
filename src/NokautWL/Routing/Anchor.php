@@ -11,7 +11,7 @@ class Anchor
      */
     public static function offerAnchorAttributes($offerUrl)
     {
-        return 'href="http://www.nokaut.pl' . $offerUrl . '" target="_blank" rel="nofollow"';
+        return 'href="http://nokaut.click' . $offerUrl . '" target="_blank" rel="nofollow"';
     }
 
     /**
