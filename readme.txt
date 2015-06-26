@@ -52,10 +52,17 @@ After plugin instalation, go to plugin configuration page '/wp-admin/options-gen
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 * Initial version
+
+= 1.0.1 =
+* Readme changes
+
+= 1.0.2 =
+* Click url change to nokaut.click
+* Update tested WordPress version
 
 == Upgrade Notice ==
 
-= 1.0 =
+= 1.0.0 =
 * Initial version, no upgrade needed.
