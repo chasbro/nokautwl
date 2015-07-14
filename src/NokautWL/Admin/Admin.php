@@ -188,7 +188,7 @@ class Admin
                     <h3>ShortTag - boxy wielu produktów [nokautwl-products-box]</h3>
                     <p>Generowany są boksy wielu produktów.
                     <ul>Opcje:
-                    <li>url - adres produktu na Twoim blogu, dokładnie taki do jakiego można dojść w blogu, bez domeny, ze znakiem / na początku</li>
+                    <li>url - adres produktów na Twoim blogu, dokładnie taki do jakiego można dojść w blogu, bez domeny, ze znakiem / na początku</li>
                     <li>limit - maksymalna ilość wyświetlanych produktów (domyślna ilość produktów: ' . ProductsBox::DEFAULT_PRODUCTS_LIMIT . ')</li>
                     <li>columns - ilość kolumn w wyświetlanych wyników (możliwe wartości: 1,2,3,4,6,12, domyślna wartość: 2)</li>
                     </ul>
