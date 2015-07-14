@@ -153,6 +153,7 @@ class Routing
 
         if (preg_match("/.*{$optionUrlPartProductPage}(.*)(\.html)?\/?/", $wpProductsUrl, $matches)) {
             $productUrl = trim($matches[1], '/ ');
+            $productUrl = str_replace(".html", '', $productUrl);
         } else {
             $productUrl = '';
         }
