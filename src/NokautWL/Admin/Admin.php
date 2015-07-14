@@ -158,7 +158,7 @@ class Admin
                     <h3>ShortTag - link tekstowy do produktu [nokautwl-product-text-link]</h3>
                     <p>Generowany jest link tekstowy, treścią jest przekazany tekst lub tytuł produktu.
                     <ul>Opcje:
-                    <li>url - adres produktu na Twoim blogu</li>
+                    <li>url - adres produktu na Twoim blogu, dokładnie taki do jakiego można dojść w blogu, bez domeny, ze znakiem / na początku</li>
                     <li>tooltip - adres produktu na Twoim blogu, przyjmowane wartości (domyślnie: simple):
                         <ul>
                         <li>off - wyłączony tooltip, nad linkiem pojawi się standardowy title linka</li>
@@ -169,32 +169,32 @@ class Admin
                     </li>
                     </ul>
                     <ul>Przykłady użycia:
-                    <li>[nokautwl-product-text-link url=\'/product/gry-psp/sony-eyepet/\' type=\'off\'/]</li>
-                    <li>[nokautwl-product-text-link url=\'/product/gry-psp/sony-eyepet/\']zobacz nowy produkt![/nokautwl-product-text-link]</li>
-                    <li>[nokautwl-product-text-link url=\'product/gry-psp/sony-eyepet/\' type=\'product/short-code/text-link/advanced.twig\'/]</li>
+                    <li>[nokautwl-product-text-link url=\'/product/gry-psp/sony-eyepet.html\' type=\'off\'/]</li>
+                    <li>[nokautwl-product-text-link url=\'/product/gry-psp/sony-eyepet.html\']zobacz nowy produkt![/nokautwl-product-text-link]</li>
+                    <li>[nokautwl-product-text-link url=\'/product/gry-psp/sony-eyepet.html\' type=\'product/short-code/text-link/advanced.twig\'/]</li>
                     </ul>
                     </p>
 
                     <h3>ShortTag - box jednego produktu [nokautwl-product-box]</h3>
                     <p>Generowany jest box produktu.
                     <ul>Opcje:
-                    <li>url - adres produktu na Twoim blogu</li>
+                    <li>url - adres produktu na Twoim blogu, dokładnie taki do jakiego można dojść w blogu, bez domeny, ze znakiem / na początku</li>
                     </ul>
                     <ul>Przykłady użycia:
-                    <li>[nokautwl-product-box url=\'product/gry-psp/sony-eyepet/\'/]</li>
+                    <li>[nokautwl-product-box url=\'/product/gry-psp/sony-eyepet.html\'/]</li>
                     </ul>
                     </p>
 
                     <h3>ShortTag - boxy wielu produktów [nokautwl-products-box]</h3>
                     <p>Generowany są boksy wielu produktów.
                     <ul>Opcje:
-                    <li>url - adres produktów na Twoim blogu</li>
+                    <li>url - adres produktu na Twoim blogu, dokładnie taki do jakiego można dojść w blogu, bez domeny, ze znakiem / na początku</li>
                     <li>limit - maksymalna ilość wyświetlanych produktów (domyślna ilość produktów: ' . ProductsBox::DEFAULT_PRODUCTS_LIMIT . ')</li>
                     <li>columns - ilość kolumn w wyświetlanych wyników (możliwe wartości: 1,2,3,4,6,12, domyślna wartość: 2)</li>
                     </ul>
                     <ul>Przykłady użycia:
-                    <li>[nokautwl-products-box url=\'category/opony/opony-zimowe/products/poziom-emisji-halasu:77.html\'/]</li>
-                    <li>[nokautwl-products-box url=\'category/opony/opony-zimowe/products/poziom-emisji-halasu:77.html\' limit=\'4\'/]</li>
+                    <li>[nokautwl-products-box url=\'/category/opony/opony-zimowe/products/poziom-emisji-halasu:77.html\'/]</li>
+                    <li>[nokautwl-products-box url=\'/category/opony/opony-zimowe/products/poziom-emisji-halasu:77.html\' limit=\'4\'/]</li>
                     <li>' . htmlentities('<?php echo \NokautWL\View\Products\ShortCode\ProductsBox::render($url,$limit,$columns); ?>') . ' - bezpośrednie wywołanie w pliku szablonu wordpress\'a,
                     np. w szablonie kategorii (w tym przypadku nie przekazujemy url, ustawiamy jako null, zostanie on automatycznie pobrany z bieżącej kategorii).
                     </ul>
