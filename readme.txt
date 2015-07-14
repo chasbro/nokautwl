@@ -52,15 +52,20 @@ After plugin instalation, go to plugin configuration page '/wp-admin/options-gen
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial version
-
-= 1.0.1 =
-* Readme changes
+= 1.1.0 =
+* Update/fix admin documentation
+* Fix product url cleaning from WP url
+* Fix list product click url
 
 = 1.0.2 =
 * Click url change to nokaut.click
 * Update tested WordPress version
+
+= 1.0.1 =
+* Readme changes
+
+= 1.0.0 =
+* Initial version
 
 == Upgrade Notice ==
 
