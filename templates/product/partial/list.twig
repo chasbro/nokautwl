@@ -11,7 +11,7 @@
                             class="media-heading">{{ product.getTitle }}</h4></a>
                 {% if product.getClickUrl %}
                     <p>w 1 sklepie za <strong class="text-danger">{{ product.getPrices.getMin }}&nbsp;zł</strong></p>
-                    {% include 'product/partial/button/offer.twig' with {'clickUrl': product.getClickUrl} %}
+                    {% include 'product/partial/button/offer.twig' with {'offerUrl': product.getClickUrl} %}
                 {% else %}
                     <p>w  {{ product.getShopCount }} sklepach od
                         <strong class="text-danger">{{ product.getPrices.getMin }}&nbsp;zł</strong>
