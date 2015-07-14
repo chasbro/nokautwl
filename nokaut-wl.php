@@ -3,7 +3,7 @@
 Plugin Name: NokautWL
 Plugin URI: http://nokaut.pl/
 Description: Easy integration Nokaut.pl search to your wordpress website.
-Version: 1.0.2
+Version: 1.1.0
 Author: Nokaut.pl Sp z o.o.
 Author URI: http://nokaut.pl/wordpress-plugins/
 License: MIT
